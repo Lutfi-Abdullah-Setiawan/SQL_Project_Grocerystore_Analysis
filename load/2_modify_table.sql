@@ -28,8 +28,6 @@ NOTE: If you are having issues with permissions. And you get error:
 \copy sales FROM 'C:\Users\acer\OneDrive\Documents\Dataset\grocery_sales_dataset\csv\sales.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 
 */
-SELECT * FROM company_dim;
--- NOTE: This has been updated from the video to fix issues with encoding
 
 COPY categories
 FROM 'C:\Users\acer\OneDrive\Documents\Dataset\grocery_sales_dataset\csv\categories.csv'
