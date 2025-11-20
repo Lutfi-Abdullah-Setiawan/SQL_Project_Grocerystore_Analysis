@@ -7,9 +7,13 @@ Monthly Sales Performance
 
 SELECT
     TO_CHAR (salesdate, 'Month') AS month,
-    SUM (Quantity) AS total_product_sold,
     COUNT(salesid) AS total_transaction,
-    ROUND(AVG(Price),0)* SUM(Quantity) AS total_sales_revenue
+    SUM (Quantity) AS total_product_sold,
+    SUM(Price) AS total_price,
+    SUM(Price * Quantity) AS Total_Gross_Sales,
+    SUM(Price * Quantity) / SUM(Quantity) AS avg_price_per_unit,
+    SUM(Price * Quantity * Discount) AS Total_Discount_Nominal,
+    SUM(Price * Quantity * (1 - Discount)) AS Total_Revenue
 FROM sales
 INNER JOIN 
     products ON sales.ProductID = products.ProductID
@@ -26,9 +30,11 @@ LIMIT 4
     SELECT 
         TO_CHAR (salesdate, 'Month') AS month,
         CategoryName,
-        SUM(Quantity) AS total_product_sold,
         COUNT(salesid) AS total_transaction,
-        ROUND(SUM(Quantity)*AVG(price),0) AS total_sales_revenue
+        SUM(Quantity) AS total_product_sold,
+        ROUND (AVG (Price),0) AS avg_price,
+        SUM(Price * Quantity * Discount) AS Total_Discount_Nominal,
+        SUM(Price * Quantity * (1 - Discount)) AS Total_Revenue
     FROM Sales
     INNER JOIN
         products ON sales.ProductID = products.ProductID
@@ -36,9 +42,14 @@ LIMIT 4
         categories ON products.CategoryID = categories.CategoryID
     WHERE salesdate IS NOT NULL
     GROUP BY 
-        month, CategoryName
+        month, CategoryName, Price
     ORDER BY 
         MIN(salesdate)
 
-
+SELECT productid, ProductName, Price, CategoryName
+FROM Products
+INNER JOIN 
+    categories ON Products.CategoryID = categories.CategoryID
+Where CategoryName = 'Produce'OR CategoryName = 'Seafood' 
+Order by Price Desc
 

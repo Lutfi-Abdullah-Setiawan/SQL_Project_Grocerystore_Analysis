@@ -6,7 +6,8 @@ WITH sales_data AS (
         ProductID,
         TO_CHAR (salesdate, 'Month') AS month,
         CONCAT(employees.FirstName, ' ',employees.MiddleInitial, ' ',employees.LastName) AS Sales_person,
-        employees.gender
+        employees.gender,
+        quantity
     FROM
         sales 
     INNER JOIN employees ON sales.employeeid = employees.employeeid
@@ -51,6 +52,7 @@ SELECT
     CategoryName,
     Class,
     Price,
+    quantity,
     discount,
     total_price
 FROM
@@ -77,3 +79,4 @@ GROUP BY
 ORDER BY 
     total_revenue
 
+SELECT * FROM DASHBORD

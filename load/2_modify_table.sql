@@ -90,3 +90,15 @@ SET postal_code = CASE
     ELSE postal_code
 
     DROP TABLE cities CASCADE;
+
+UPDATE Products
+SET Price = 1
+WHERE ProductName = 'Pastry - Raisin Muffin - Mini';
+
+UPDATE Products
+SET Price = 2
+WHERE ProductName = 'Apricots - Halves';
+
+UPDATE Products
+SET Price = 3
+WHERE ProductName = 'Bread Crumbs - Japanese Style';

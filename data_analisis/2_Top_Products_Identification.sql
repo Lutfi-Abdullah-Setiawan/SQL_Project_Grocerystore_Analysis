@@ -9,17 +9,18 @@ Top Products Identification
 SELECT
     ProductID,
     ProductName,
-    ROUND(AVG (Price),0) AS product_price,
-    AVG(discount) AS discount_avg,
+    Price,
+    SUM(discount) AS total_discount,
     SUM(Quantity) AS total_product_sold,
     ROUND(SUM(Quantity * Price * (1 - Discount)), 0) AS total_sales_revenue
 FROM sales
 INNER JOIN products USING (ProductID)
 WHERE salesdate IS NOT NULL
-GROUP BY ProductID, ProductName
+GROUP BY ProductID, ProductName, Price
 ORDER BY total_sales_revenue DESC
-LIMIT 20
+LIMIT 10
 
+SELECT * From products WHERE productid = 345
 
 --Analyze sales quantity and revenue to identify high-demand products.--
 
