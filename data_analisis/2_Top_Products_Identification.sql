@@ -4,20 +4,30 @@ Top Products Identification
     */
 
 
---Rank products based on total sales revenue--
+--Rank products Category based on total sales revenue--
 
-SELECT
-    ProductID,
+WITH Product_Sales AS (
+    SELECT
+    Productid,
     ProductName,
-    Price,
+    CategoryID,
     SUM(discount) AS total_discount,
     SUM(Quantity) AS total_product_sold,
-    ROUND(SUM(Quantity * Price * (1 - Discount)), 0) AS total_sales_revenue
-FROM sales
-INNER JOIN products USING (ProductID)
-WHERE salesdate IS NOT NULL
-GROUP BY ProductID, ProductName, Price
-ORDER BY total_sales_revenue DESC
+    ROUND(SUM(Quantity * Price * (1 - Discount)), 0) AS sales_revenue_product
+    From Sales
+    INNER JOIN products USING (ProductID)
+    WHERE salesdate IS NOT NULL
+    GROUP BY ProductID, ProductName, CategoryID)
+SELECT 
+    CategoryID,
+    Categoryname,
+    SUM(total_discount) AS total_category_discount,
+    SUM(total_product_sold) AS total_category_sold,
+    SUM(sales_revenue_product) AS sales_revenue_category
+FROM categories
+INNER JOIN Product_Sales USING (CategoryID)
+GROUP BY CategoryID, CategoryName
+ORDER BY sales_revenue_category DESC
 LIMIT 10
 
 SELECT * From products WHERE productid = 345

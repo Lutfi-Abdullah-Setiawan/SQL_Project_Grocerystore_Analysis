@@ -18,8 +18,8 @@ Sales_by_customers AS (
         CustomerID,
         CityID,
         COUNT(salesid) AS total_sales,
-        SUM (Price) AS total_revenue,
-        SUM(Quantity) AS total_product_sold
+        SUM(Quantity) AS total_product_sold,
+         ROUND(SUM(Price * Quantity * (1 - Discount))) AS Total_Revenue
 FROM sales
 FULL OUTER JOIN customers USING (CustomerID)
 INNER JOIN products ON sales.productid = products.productid

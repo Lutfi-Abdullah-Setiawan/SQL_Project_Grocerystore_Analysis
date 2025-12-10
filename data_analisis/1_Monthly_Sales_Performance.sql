@@ -13,7 +13,7 @@ SELECT
     SUM(Price * Quantity) AS Total_Gross_Sales,
     SUM(Price * Quantity) / SUM(Quantity) AS avg_price_per_unit,
     SUM(Price * Quantity * Discount) AS Total_Discount_Nominal,
-    SUM(Price * Quantity * (1 - Discount)) AS Total_Revenue
+    ROUND(SUM(Price * Quantity * (1 - Discount))) AS Total_Revenue
 FROM sales
 INNER JOIN 
     products ON sales.ProductID = products.ProductID
