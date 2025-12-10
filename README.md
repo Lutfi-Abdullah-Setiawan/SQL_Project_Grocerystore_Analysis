@@ -59,7 +59,7 @@ Here's the breakdown of the Sales revenue over four-month period
 
 To understand sales dynamics over the four-month period, I calculated several key performance indicators using SQL, including total transactions, quantity sold, gross sales, average unit price, total discount value, and total revenue after discounts. By grouping the data by month, this query reveals how sales activity fluctuated and what patterns emerged across the observed time frame.
 
-![Sales_by_Month](Assets\Sales_by_Month.png) 
+![Sales_by_Month](Assets/Sales_by_Month.png) 
 *Line Chart visualizing the total revenue by month; I use excel to make this graph and using data from my sql query results*
 
 By comparing these metrics month-to-month, we can identify peaks in demand, slump periods, seasonal trends, or the effects of pricing and discount strategies. This breakdown serves as the foundation for evaluating overall business performance and making informed decisions about sales planning, product strategy, and revenue management over the four-month timeframe.
@@ -93,7 +93,7 @@ GROUP BY CategoryID, CategoryName
 ORDER BY sales_revenue_category DESC
 LIMIT 10
 ```
-![Top10_Sales_by_Category](Assets\Sales_by_Category.png)
+![Top10_Sales_by_Category](Assets/Sales_by_Category.png)
 Graph Bar Chart visualizing the Top 10 Revenue by Category; I use excel to make this graph and using data from my sql query results*
 
 Here's the breakdown of the Top 10 Sales by Categories :
